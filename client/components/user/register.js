@@ -1,6 +1,11 @@
+// Client
+
 import React from 'react';
 import { connect } from 'react-redux';
-import { userRegisterRequest } from './register.actions';
+
+import validateRegister from '../../../shared/validations/register';
+import { userRegisterRequest } from './register-actions';
+import InputText from '../common/input-text';
 
 class UserRegister extends React.Component {
     constructor(props) {
@@ -8,7 +13,9 @@ class UserRegister extends React.Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errors: {},
+            isLoading: false
         };
     }
 
@@ -18,12 +25,36 @@ class UserRegister extends React.Component {
         });
     }
 
+    isValid() {
+        let validateResult = validateRegister(this.state);
+
+        if(!validateResult.isValid) {
+            this.setState({errors: validateResult.errors});
+        }
+
+        return validateResult.isValid;
+    }
+
     onSubmit(event) {
         event.preventDefault();
 
-        console.log(this.state);
+        if(this.isValid()) {
+            this.setState({errors: {}, isLoading: true});
 
-        this.props.userRegisterRequest(this.state);
+            this.props.userRegisterRequest(this.state).then(
+                (response) => {
+                    console.log(response.data);
+
+                    this.setState({isLoading: false});
+                },
+
+                (error) => {
+                    console.log(error.response.data);
+
+                    this.setState({errors: error.response.data.errors, isLoading: false});
+                }
+            );
+        }
     }
 
     render() {
@@ -32,35 +63,31 @@ class UserRegister extends React.Component {
                 <h2>Register</h2>
 
                 <form onSubmit={ this.onSubmit.bind(this) }>
-                    <div className="form-group">
-                        <label htmlFor="user-username">Username</label>
 
-                        <input
-                            type="text"
-                            value={ this.state.username }
-                            onChange={ this.onChange.bind(this) }
-                            name="username"
-                            className="form-control"
-                            id="user-username"
-                            placeholder="Eg: jonsnow"
-                        />
-                    </div>
+                    <InputText
+                        error={ this.state.errors.username }
+                        type="text"
+                        value={ this.state.username }
+                        onChange={ this.onChange.bind(this) }
+                        name="username"
+                        id="user-username"
+                        label="Username"
+                        placeholder="Eg: jonsnow"
+                    />
 
-                    <div className="form-group">
-                        <label htmlFor="user-password">Password</label>
 
-                        <input
-                            type="password"
-                            value={ this.state.password }
-                            onChange={ this.onChange.bind(this) }
-                            name="password"
-                            className="form-control"
-                            id="user-password"
-                            placeholder="Password"
-                        />
-                    </div>
+                    <InputText
+                        error={ this.state.errors.password }
+                        type="password"
+                        value={ this.state.password }
+                        onChange={ this.onChange.bind(this) }
+                        name="password"
+                        id="user-password"
+                        label="Password"
+                        placeholder="Password"
+                    />
 
-                    <button type="submit" className="btn btn-default">Register</button>
+                    <button type="submit" disabled={ this.state.isLoading } className="btn btn-default">Register</button>
                 </form>
             </section>
         );

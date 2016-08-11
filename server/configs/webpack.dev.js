@@ -24,7 +24,10 @@ export default {
         loaders: [
             {
                 test: /\.js$/,
-                include: path.join(__dirname, '../../client'),
+                include: [
+                    path.join(__dirname, '../../client'),
+                    path.join(__dirname, '../../shared'),
+                ],
                 loaders: [ 'react-hot', 'babel' ]
             }
         ]

@@ -1,25 +1,41 @@
-import express from 'express';
-import path from 'path';
+// Server
 
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackConfig from './configs/webpack.config.dev';
+// Common
+    import path from 'path';
+    import configServer from './configs/server';
 
-let app = express();
+// Express
+    import express from 'express';
 
-let compiler = webpack(webpackConfig);
-app.use(webpackMiddleware(compiler, {
-    hot: true,
-    publicPath: webpackConfig.output.publicPath,
-    noInfo: true
-}));
-app.use(webpackHotMiddleware(compiler));
+    let app = express();
 
-app.get('/*', (request, response) => {
-    response.sendFile(path.join(__dirname, './index.html'))
-});
+// Webpack
+    import webpack from 'webpack';
+    import webpackMiddleware from 'webpack-dev-middleware';
+    import webpackHotMiddleware from 'webpack-hot-middleware';
+    import webpackConfig from './configs/webpack.dev';
 
-app.listen(3000, () => {
-    console.log('Server Running on 3000');
-});
+    let compiler = webpack(webpackConfig);
+    app.use(webpackMiddleware(compiler, {
+        hot: true,
+        publicPath: webpackConfig.output.publicPath,
+        noInfo: true
+    }));
+    app.use(webpackHotMiddleware(compiler));
+
+// Body Parser
+    import bodyParser from 'body-parser';
+    app.use(bodyParser.json());
+
+// Routes
+    import routesUsers from './routes/users';
+    app.use('/api/users', routesUsers);
+
+    app.get('/*', (request, response) => {
+        response.sendFile(path.join(__dirname, './index.html'))
+    });
+
+// Start Server
+    app.listen(configServer.port, () => {
+        console.log('Server Running on '+configServer.port);
+    });
