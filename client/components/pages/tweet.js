@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { validateUserLogin } from '../../../shared/validations/user/login';
+import { validateTweet } from '../../../shared/validations/tweets';
 import { tweetRequest } from '../../actions/pages/tweet';
 import { flashMessageAdd } from '../../actions/flash-messages';
 import InputTextarea from '../common/inputs/textarea';
@@ -25,16 +25,49 @@ class TweetPage extends React.Component {
         });
     }
 
+    isValid() {
+        const { errors, isValid } = validateTweet(this.state);
+
+        if(!isValid) {
+            this.setState({ errors });
+        }
+
+        return isValid;
+    }
+
     onSubmit(event) {
         event.preventDefault();
+
+        if(this.isValid()) {
+            this.setState({errors: {}, isLoading: true});
+
+            this.props.tweetRequest(this.state).then(
+                (response) => {
+                    console.log(response);
+
+                    this.props.flashMessageAdd({
+                        type: 'success',
+                        text: 'Tweet sent!'
+                    });
+
+                    this.setState({isLoading: false, tweet: ''});
+
+                    this.context.router.push('/');
+                },
+
+                (error) => {
+                    console.log(error.response.data);
+
+                    this.setState({errors: error.response.data.errors, isLoading: false});
+                }
+            );
+        }
     }
 
     render() {
         return (
             <section>
                 <h2>Tweet to the world</h2>
-
-                { this.state.errors.form && <div className="alert alert-danger">{ this.state.errors.form }</div> }
 
                 <form onSubmit={ this.onSubmit.bind(this) }>
                     <InputTextarea

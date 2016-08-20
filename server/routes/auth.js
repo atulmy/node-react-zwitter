@@ -1,4 +1,4 @@
-// Server
+// Server / Routes / Auth
 
 import express from 'express';
 import bcrypt from 'bcrypt';

@@ -1,7 +1,7 @@
-// Server / Models / User
+// Server / Models / Tweet
 
 import Orm from '../configs/orm';
 
 export default Orm.Model.extend({
-    tableName: 'users'
+    tableName: 'tweets'
 });

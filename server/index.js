@@ -36,7 +36,11 @@
         import routesAuth from './routes/auth';
         app.use('/api/auth', routesAuth);
 
-    app.get('/*', (request, response) => {
+    // Tweets
+        import routesTweets from './routes/tweets';
+        app.use('/api/tweets', routesTweets);
+
+app.get('/*', (request, response) => {
         response.sendFile(path.join(__dirname, './index.html'))
     });
 

@@ -7,9 +7,9 @@ import serverConfig from '../configs/server';
 import User from '../models/user';
 
 /*
-    Check if username already exists in 'users' table
-    Accepts: Object { username }
-    Returns: Promise
+ * Check if username already exists in 'users' table
+ * Accepts: Object { username }
+ * Returns: Promise
  */
 export function checkUsernameAlreadyExists(data) {
     let errors = {};
@@ -35,9 +35,9 @@ export function checkUsernameAlreadyExists(data) {
 }
 
 /*
-    Create a new user record in 'users' table
-    Accepts: String username, String password
-    Returns: Promise
+ * Create a new user record in 'users' table
+ * Accepts: String username, String password
+ * Returns: Promise
  */
 export function createUser(username, password) {
     // Encrypt password

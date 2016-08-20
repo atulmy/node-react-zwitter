@@ -7,10 +7,10 @@
  * Migrations
  *
  * Create Table
- *     knex --knexfile server/configs/database.js --cwd server/ tablename migrate:make
+ *     knex --knexfile server/configs/database.js --cwd server/ migrate:make tablename
  *
  * Run Migrations
- *     knex --knexfile server/configs/database.js --cwd server/ tablename migrate:latest
+ *     knex --knexfile server/configs/database.js --cwd server/ migrate:latest
  */
 
 module.exports = {

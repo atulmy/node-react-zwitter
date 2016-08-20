@@ -51,15 +51,15 @@ class UserLogin extends React.Component {
                         text: 'You have logged in successfully.'
                     });
 
-                    this.setState({isLoading: false});
+                    this.setState({ isLoading: false });
 
-                    this.context.router.push('/');
+                    this.context.router.push('/tweet');
                 },
 
                 (error) => {
                     console.log(error.response.data);
 
-                    this.setState({errors: error.response.data.errors, isLoading: false});
+                    this.setState({ errors: error.response.data.errors, isLoading: false });
                 }
             );
         }

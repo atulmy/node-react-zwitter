@@ -1,4 +1,4 @@
-// Server
+// Server / Routes / Users
 
 import express from 'express';
 
@@ -27,29 +27,37 @@ routesUsers.post('/', (request, response) => {
             let { errors, isValid } = validateUserRegister(request.body);
 
             if(isValid) {
-                const {username, password} = request.body;
+                const { username, password } = request.body;
 
                 createUser(username, password)
 
                     .then((user) => {
                         responseData.success = true;
+
+                        response.status(201); // created status
+
+                        response.json(responseData);
                     })
 
                     .catch((error) => {
                         response.status(500);
 
                         responseData.errors = error;
+
+                        response.json(responseData);
                     });
             } else {
                 response.status(400);
 
                 responseData.errors = errors;
+
+                response.json(responseData);
             }
         } else {
             response.status(400);
-        }
 
-        return response.json(responseData);
+            response.json(responseData);
+        }
     });
 });
 
