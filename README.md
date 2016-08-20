@@ -18,9 +18,11 @@ A very basic clone of Twitter using NodeJS, Express, MySQL and React
       │   │   ├── common
       │   │   ├── pages
       │   │   ├── user
+      │   │   │
       │   │   └── app.js
       │   │
       │   ├── reducers
+      │   │
       │   ├── index.js
       │   └── routes.js
       │
@@ -35,6 +37,7 @@ A very basic clone of Twitter using NodeJS, Express, MySQL and React
       │   ├── models
       │   ├── repositories
       │   ├── routes
+      │   │
       │   ├── index.html
       │   └── index.js
       │
