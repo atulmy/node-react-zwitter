@@ -6,9 +6,11 @@ import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
+import jwt from 'jsonwebtoken';
 
 import rootReducer from './reducers/root';
 import routes from './routes';
+import { setAuthorizationToken, setCurrentUser } from './actions/common/auth';
 
 const store = createStore(
     rootReducer,
@@ -17,6 +19,12 @@ const store = createStore(
         window.devToolsExtension ? window.devToolsExtension() : f => f
     )
 );
+
+if(localStorage.getItem('token')) {
+    setAuthorizationToken(localStorage.getItem('token'));
+
+    store.dispatch(setCurrentUser(jwt.decode(localStorage.getItem('token'))));
+}
 
 render(
     <Provider store={ store }>

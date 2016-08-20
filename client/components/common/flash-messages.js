@@ -1,4 +1,4 @@
-// Client
+// Client / Components / Common / Flash Message
 
 import React from 'react';
 import { connect } from 'react-redux';

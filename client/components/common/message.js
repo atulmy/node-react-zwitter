@@ -1,7 +1,6 @@
-// Client
+// Client / Components / Common / Message
 
 import React from 'react';
-import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 class Message extends React.Component {

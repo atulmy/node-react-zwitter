@@ -3,10 +3,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import validateRegister from '../../../shared/validations/register';
-import { userRegisterRequest } from '../../actions/register';
+import { validateUserRegister } from '../../../shared/validations/user/register';
+import { userRegisterRequest } from '../../actions/user/register';
 import { flashMessageAdd } from '../../actions/flash-messages';
-import InputText from '../common/input-text';
+import InputText from '../common/inputs/text';
 
 class UserRegister extends React.Component {
     constructor(props) {
@@ -27,13 +27,13 @@ class UserRegister extends React.Component {
     }
 
     isValid() {
-        let validateResult = validateRegister(this.state);
+        const { errors, isValid } = validateUserRegister(this.state);
 
-        if(!validateResult.isValid) {
-            this.setState({errors: validateResult.errors});
+        if(!isValid) {
+            this.setState({ errors });
         }
 
-        return validateResult.isValid;
+        return isValid;
     }
 
     onSubmit(event) {
@@ -83,7 +83,6 @@ class UserRegister extends React.Component {
                         placeholder="Eg: jonsnow"
                     />
 
-
                     <InputText
                         error={ this.state.errors.password }
                         type="password"
@@ -95,7 +94,7 @@ class UserRegister extends React.Component {
                         placeholder="Password"
                     />
 
-                    <button type="submit" disabled={ this.state.isLoading } className="btn btn-default">Register</button>
+                    <button type="submit" disabled={ this.state.isLoading } className="btn btn-default">Submit</button>
                 </form>
             </section>
         );

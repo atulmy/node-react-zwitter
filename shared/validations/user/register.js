@@ -1,9 +1,9 @@
-// Shared
+// Shared / Validations / User / Register
 
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
-export default function validateRegister(data) {
+export function validateUserRegister(data) {
     let errors = {};
 
     if(Validator.isNull(data.username)) {

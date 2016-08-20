@@ -1,4 +1,4 @@
-// Client
+// Client / Components / Common / Footer
 
 import React from 'react';
 

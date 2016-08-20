@@ -28,8 +28,13 @@
     app.use(bodyParser.json());
 
 // Routes
-    import routesUsers from './routes/users';
-    app.use('/api/users', routesUsers);
+    // Users
+        import routesUsers from './routes/users';
+        app.use('/api/users', routesUsers);
+
+    // Auth
+        import routesAuth from './routes/auth';
+        app.use('/api/auth', routesAuth);
 
     app.get('/*', (request, response) => {
         response.sendFile(path.join(__dirname, './index.html'))

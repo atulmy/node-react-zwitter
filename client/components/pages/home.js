@@ -1,4 +1,4 @@
-// Client
+// Client / Components / Pages / Home
 
 import React from 'react';
 
