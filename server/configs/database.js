@@ -6,8 +6,8 @@
  *
  * Migrations
  *
- * Create Table
- *     knex --knexfile server/configs/database.js --cwd server/ migrate:make tablename
+ * Create Migration
+ *     knex --knexfile server/configs/database.js --cwd server/ migrate:make filename
  *
  * Run Migrations
  *     knex --knexfile server/configs/database.js --cwd server/ migrate:latest
