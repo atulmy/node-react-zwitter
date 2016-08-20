@@ -22,7 +22,7 @@ routesTweets.post('/', middlewareAuthenticate, (request, response) => {
     if(isValid) {
         const { tweet } = request.body;
 
-        createTweet(1, tweet) // @temp user id = 1
+        createTweet(request.currentUser.id, tweet)
 
             .then((tweetSaved) => {
                 responseData.success = true;
