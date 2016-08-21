@@ -45,3 +45,7 @@ A very basic clone of Twitter using NodeJS, Express, MySQL and React
       ├── .gitignore
       ├── package.json
       └── README.md
+
+
+## Screenshots
+![screenshot](http://atulmy.com/attachments/images/zwitter/zwitter.png)
