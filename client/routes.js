@@ -9,6 +9,7 @@ import HomePage from './components/pages/home';
 import TweetPage from './components/pages/tweet';
 import UserLogin from './components/user/login';
 import UserRegister from './components/user/register';
+import UserProfile from './components/user/profile';
 
 export default (
     <Route path="/" component={ App }>
@@ -16,5 +17,6 @@ export default (
         <Route path="tweet" component={ Auth(TweetPage) } />
         <Route path="login" component={ UserLogin } />
         <Route path="register" component={ UserRegister } />
+        <Route path="profile/:username" component={ UserProfile } />
     </Route>
 )

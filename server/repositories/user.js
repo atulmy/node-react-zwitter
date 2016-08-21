@@ -52,3 +52,16 @@ export function createUser(username, password) {
         { hasTimestamps: true }
     ).save();
 }
+
+
+/*
+ * Get user's all tweets
+ * Accepts: String username
+ * Returns: Promise
+ */
+export function getAllTweetsByUsername(username) {
+    return User.where({ username: username })
+        .fetchAll({
+            withRelated: ['tweets']
+        });
+}

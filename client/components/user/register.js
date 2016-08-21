@@ -1,4 +1,4 @@
-// Client
+// Client / Components / User / Register
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -53,7 +53,7 @@ class UserRegister extends React.Component {
 
                     this.setState({isLoading: false});
 
-                    this.context.router.push('/');
+                    this.context.router.push('/login');
                 },
 
                 (error) => {

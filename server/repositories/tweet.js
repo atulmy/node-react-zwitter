@@ -31,5 +31,14 @@ export function createTweet(userId, tweet) {
 export function getAllTweets() {
     return Tweet.query((qb) => {
         qb.orderBy('created_at','DESC');
-    }).fetchAll();
+    })
+        .fetchAll({
+            withRelated: [
+                {
+                    'user': function(qb) {
+                        qb.column('id', 'username');
+                    }
+                }
+            ]
+        });
 }

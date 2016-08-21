@@ -4,6 +4,7 @@ import express from 'express';
 
 import middlewareAuthenticate from '../middlewares/auth';
 import { createTweet, getAllTweets } from '../repositories/tweet';
+import { getAllTweetsByUsername } from '../repositories/user';
 import { validateTweet } from '../../shared/validations/tweets';
 
 let routesTweets = express.Router();
@@ -63,6 +64,35 @@ routesTweets.get('/', (request, response) => {
         .then((tweets) => {
             responseData.success = true;
             responseData.tweets = tweets;
+
+            response.json(responseData);
+        })
+
+        .catch((error) => {
+            response.status(500);
+
+            responseData.errors = error;
+
+            response.json(responseData);
+        });
+});
+
+routesTweets.get('/:username', (request, response) => {
+    let responseData = {
+        success: false,
+
+        user: [],
+
+        errors: {}
+    };
+
+    const { username } = request.params;
+
+    getAllTweetsByUsername(username)
+
+        .then((user) => {
+            responseData.success = true;
+            responseData.user = user;
 
             response.json(responseData);
         })

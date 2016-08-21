@@ -1,4 +1,4 @@
-// Client
+// Client / Components / User / Login
 
 import React from 'react';
 import { connect } from 'react-redux';

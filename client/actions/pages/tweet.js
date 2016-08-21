@@ -14,3 +14,8 @@ export function tweetGetRequest(tweet) {
     }
 }
 
+export function tweetGetByUsernameRequest(username) {
+    return dispatch => {
+        return axios.get(`/api/tweets/${ username }`);
+    }
+}
