@@ -7,42 +7,39 @@ A very basic clone of Twitter using NodeJS, Express, MySQL and React
 - Run Node server `npm start`
 
 ## Core Structure
-    zwitter
-      ├── client
-      │   ├── actions
-      │   │   ├── common
-      │   │   ├── pages
-      │   │   └── user
+    zwitter/
+      ├── client/
+      │   ├── actions/
+      │   │   ├── common/
+      │   │   ├── pages/
+      │   │   └── user/
       │   │
-      │   ├── components
-      │   │   ├── common
-      │   │   ├── pages
-      │   │   ├── user
-      │   │   │
+      │   ├── components/
+      │   │   ├── common/
+      │   │   ├── pages/
+      │   │   ├── user/
       │   │   └── app.js
       │   │
-      │   ├── reducers
-      │   │
+      │   ├── reducers/
       │   ├── index.js
       │   └── routes.js
       │
-      ├── server
-      │   ├── configs
+      ├── server/
+      │   ├── configs/
       │   │   ├── database.js
       │   │   ├── orm.js
       │   │   ├── server.js
       │   │   └── webpack.dev.js
       │   │
-      │   ├── middlewares
-      │   ├── models
-      │   ├── repositories
-      │   ├── routes
-      │   │
+      │   ├── middlewares/
+      │   ├── models/
+      │   ├── repositories/
+      │   ├── routes/
       │   ├── index.html
       │   └── index.js
       │
-      ├── shared
-      │   └── validations
+      ├── shared/
+      │   └── validations/
       │
       ├── .babelrc
       ├── .gitignore
