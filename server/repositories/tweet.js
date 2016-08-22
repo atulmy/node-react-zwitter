@@ -2,6 +2,7 @@
 
 import isEmpty from 'lodash/isEmpty';
 
+import sharedConfig from '../../shared/configs/shared';
 import Tweet from '../models/tweet';
 
 /*
@@ -28,9 +29,17 @@ export function createTweet(userId, tweet) {
  * Get list of all tweets
  * Returns: Promise
  */
-export function getAllTweets() {
+export function getAllTweets(page = 1) {
+    const pagingLimit = sharedConfig.pagination;
+
+    console.log(pagingLimit);
+
     return Tweet.query((qb) => {
         qb.orderBy('created_at','DESC');
+
+        qb.limit(pagingLimit);
+
+        qb.offset((page - 1) * pagingLimit);
     })
         .fetchAll({
             withRelated: [
@@ -41,4 +50,12 @@ export function getAllTweets() {
                 }
             ]
         });
+}
+
+/*
+ * Get list of all tweets
+ * Returns: Promise
+ */
+export function getTweetCount() {
+    return Tweet.count();
 }

@@ -8,9 +8,9 @@ export function tweetRequest(tweet) {
     }
 }
 
-export function tweetGetRequest(tweet) {
+export function tweetGetRequest(page) {
     return dispatch => {
-        return axios.get('/api/tweets', tweet);
+        return axios.get(`/api/tweets/${ page }`);
     }
 }
 

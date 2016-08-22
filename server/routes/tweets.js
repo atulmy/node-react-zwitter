@@ -3,7 +3,7 @@
 import express from 'express';
 
 import middlewareAuthenticate from '../middlewares/auth';
-import { createTweet, getAllTweets } from '../repositories/tweet';
+import { createTweet, getAllTweets, getTweetCount } from '../repositories/tweet';
 import { getAllTweetsByUsername } from '../repositories/user';
 import { validateTweet } from '../../shared/validations/tweets';
 
@@ -50,22 +50,33 @@ routesTweets.post('/', middlewareAuthenticate, (request, response) => {
 });
 
 
-routesTweets.get('/', (request, response) => {
+routesTweets.get('/:page?', (request, response) => {
+
     let responseData = {
         success: false,
 
         tweets: [],
 
+        tweetCount: 0,
+
         errors: {}
     };
 
-    getAllTweets()
+    const page = request.params.page ? request.params.page : 1;
+
+    getAllTweets(page)
 
         .then((tweets) => {
             responseData.success = true;
             responseData.tweets = tweets;
 
-            response.json(responseData);
+            getTweetCount().then((count) => {
+                console.log(count);
+
+                responseData.tweetCount = count;
+
+                response.json(responseData);
+            });
         })
 
         .catch((error) => {

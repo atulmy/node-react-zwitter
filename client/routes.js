@@ -18,5 +18,6 @@ export default (
         <Route path="login" component={ UserLogin } />
         <Route path="register" component={ UserRegister } />
         <Route path="profile/:username" component={ UserProfile } />
+        <Route path="(:page)" component={ HomePage } />
     </Route>
 )

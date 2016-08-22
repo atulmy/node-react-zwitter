@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import isEmpty from 'lodash/isEmpty';
 
 import { tweetGetRequest } from '../../actions/pages/tweet';
+import Pagination from '../common/pagination';
 import TweetItem from './tweet-item';
 
 class HomePage extends React.Component {
@@ -14,23 +15,35 @@ class HomePage extends React.Component {
 
         this.state = {
             tweets: [],
+            tweetCount: 0,
             noTweets: false,
             errors: {},
-            isLoading: false
+            isLoading: false,
+            page: ((this.props.params.page) ? parseInt(this.props.params.page) : 1)
         }
     }
 
+    componentWillReceiveProps(newProps) {
+        this.setState({ page: parseInt(newProps.params.page) }, () => {
+            this.getTweets();
+        });
+    }
+
     componentWillMount() {
+        this.getTweets();
+    }
+
+    getTweets() {
         this.setState({ errors: {}, isLoading: true });
 
-        this.props.tweetGetRequest(this.state).then(
+        this.props.tweetGetRequest(this.state.page).then(
             (response) => {
                 console.log(response);
 
                 this.setState({ isLoading: false });
 
                 if(!isEmpty(response.data.tweets)) {
-                    this.setState({ tweets: response.data.tweets });
+                    this.setState({ tweets: response.data.tweets, tweetCount: response.data.tweetCount });
                 } else {
                     this.setState({ noTweets: true });
                 }
@@ -60,6 +73,10 @@ class HomePage extends React.Component {
                 { this.state.isLoading ? pleaseWaitMessage : tweets }
 
                 { this.state.noTweets ? noTweetsMessage : '' }
+
+                <hr/>
+
+                <Pagination current={ this.state.page } count={ this.state.tweetCount }/>
             </section>
         );
     }
