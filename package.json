@@ -1,18 +1,18 @@
 {
   "name": "zwitter",
   "version": "1.0.0",
-  "description": "",
+  "description": "A very basic clone of Twitter using NodeJS, Express, MySQL and React",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch server --exec babel-node -- server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["javascript", "node", "react", "express", "mysql"],
+  "author": "Atul Yadav",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git://github.com/atulmy/nodejs-zwitter.git"
+    "url": "git@github.com:atulmy/nodejs-reactjs-zwitter.git"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
