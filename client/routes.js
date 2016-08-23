@@ -17,7 +17,7 @@ export default (
         <Route path="tweet" component={ Auth(TweetPage) } />
         <Route path="login" component={ UserLogin } />
         <Route path="register" component={ UserRegister } />
-        <Route path="profile/:username" component={ UserProfile } />
+        <Route path="profile/:username(/:page)" component={ UserProfile } />
         <Route path="(:page)" component={ HomePage } />
     </Route>
 )

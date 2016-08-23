@@ -88,7 +88,7 @@ routesTweets.get('/:page?', (request, response) => {
         });
 });
 
-routesTweets.get('/:username', (request, response) => {
+routesTweets.get('/user/:username', (request, response) => {
     let responseData = {
         success: false,
 

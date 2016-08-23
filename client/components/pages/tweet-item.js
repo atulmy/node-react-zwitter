@@ -11,7 +11,7 @@ class TweetItem extends React.Component {
         return (
             <div className="panel panel-default">
                 <div className="panel-body">
-                    { id } { tweet }
+                    { tweet }
                 </div>
 
                 <div className="panel-footer">

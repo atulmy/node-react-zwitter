@@ -57,7 +57,7 @@ class UserProfile extends React.Component {
 
         return (
             <section>
-                <h2>{ this.state.username }</h2>
+                <h2>Tweets by { this.state.username }</h2>
 
                 { this.state.isLoading ? pleaseWaitMessage : tweets }
 

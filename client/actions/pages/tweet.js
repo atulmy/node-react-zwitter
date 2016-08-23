@@ -16,6 +16,6 @@ export function tweetGetRequest(page) {
 
 export function tweetGetByUsernameRequest(username) {
     return dispatch => {
-        return axios.get(`/api/tweets/${ username }`);
+        return axios.get(`/api/tweets/user/${ username }`);
     }
 }
